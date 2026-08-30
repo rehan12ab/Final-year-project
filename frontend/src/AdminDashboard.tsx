@@ -50,7 +50,19 @@ const AdminDashboard = () => {
 
     const [sidebarOpen, setSidebarOpen] = useState(window.innerWidth > 768);
     const [profileMenuOpen, setProfileMenuOpen] = useState(false);
-    const [currentTab, setCurrentTab] = useState<"dashboard" | "users" | "analytics" | "history" | "settings" | "notifications">("dashboard");
+    // Initialize tab from localStorage so a page refresh restores the last-viewed tab.
+    const ADMIN_VALID_TABS = ["dashboard", "users", "analytics", "history", "settings", "notifications"] as const;
+    type AdminTabKey = typeof ADMIN_VALID_TABS[number];
+    const [currentTab, setCurrentTab] = useState<AdminTabKey>(() => {
+        const stored = localStorage.getItem('hs_admin_tab');
+        if (stored && (ADMIN_VALID_TABS as readonly string[]).includes(stored)) return stored as AdminTabKey;
+        return "dashboard";
+    });
+
+    // Persist current tab across refreshes.
+    useEffect(() => {
+        localStorage.setItem('hs_admin_tab', currentTab);
+    }, [currentTab]);
     const [users, setUsers] = useState<User[]>([]);
     const [analytics, setAnalytics] = useState<Analytics | null>(null);
     const [loading, setLoading] = useState(false);
@@ -181,19 +193,24 @@ const AdminDashboard = () => {
     };
 
     useEffect(() => {
+        // Initial data load only — no polling. Use the Sync button in the topbar to refresh.
         fetchAnalytics();
         fetchUsers();
         checkEngineStatus();
-        const interval = setInterval(checkEngineStatus, 30000);
-        return () => clearInterval(interval);
+        // Auto-poll disabled per user request. To re-enable:
+        // const interval = setInterval(checkEngineStatus, 30000);
+        // return () => clearInterval(interval);
     }, []);
 
-    useEffect(() => {
-        if (currentTab === "users") fetchUsers();
-        else if (currentTab === "analytics" || currentTab === "dashboard") fetchAnalytics();
-        else if (currentTab === "notifications") fetchUsersList();
-        else if (currentTab === "history") fetchUsersWithScans();
-    }, [currentTab]);
+    // Auto re-fetch on tab change disabled — data only refreshes when the Sync button is clicked.
+    // Re-enable this useEffect if you want tab switches to force a refresh:
+    //
+    // useEffect(() => {
+    //     if (currentTab === "users") fetchUsers();
+    //     else if (currentTab === "analytics" || currentTab === "dashboard") fetchAnalytics();
+    //     else if (currentTab === "notifications") fetchUsersList();
+    //     else if (currentTab === "history") fetchUsersWithScans();
+    // }, [currentTab]);
 
     const handleUpdateUserPlan = async (userId: string, newPlan: string) => {
         const token = localStorage.getItem("hs_admin_token");

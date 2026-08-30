@@ -37,7 +37,7 @@ interface Notification {
 }
 
 interface DashboardProps {
-  children?: React.ReactNode; // âœ… allow child components like ScanProcess
+  children?: React.ReactNode; // allow child components like ScanProcess
 }
 
 
@@ -55,15 +55,29 @@ const Dashboard: React.FC<DashboardProps> = ({ children }) => {
   const [unreadCount, setUnreadCount] = useState(0);
   const [authorized, setAuthorized] = useState(false);
   const [url, setUrl] = useState("");
-  const [currentTab, setCurrentTab] = useState<
-    "dashboard" | "history" | "help" | "settings" | "reports" | "plans" | "notifications" | "chatHistory"
-  >("dashboard");
+  const VALID_TABS = ["dashboard", "history", "help", "settings", "reports", "plans", "notifications", "chatHistory"] as const;
+  type TabKey = typeof VALID_TABS[number];
+
+  // Initialize tab from URL → localStorage → default, so refresh keeps you on the same tab.
+  const [currentTab, setCurrentTab] = useState<TabKey>(() => {
+    const params = new URLSearchParams(window.location.search);
+    const urlTab = params.get('tab');
+    if (urlTab && (VALID_TABS as readonly string[]).includes(urlTab)) return urlTab as TabKey;
+    const stored = localStorage.getItem('hs_user_tab');
+    if (stored && (VALID_TABS as readonly string[]).includes(stored)) return stored as TabKey;
+    return "dashboard";
+  });
+
+  // Persist current tab so a refresh restores it.
+  useEffect(() => {
+    localStorage.setItem('hs_user_tab', currentTab);
+  }, [currentTab]);
 
   // Handle Tab changes from URL (AI Navigation)
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     const tab = params.get('tab') as any;
-    if (tab && ["dashboard", "history", "help", "settings", "reports", "plans", "notifications", "chatHistory"].includes(tab)) {
+    if (tab && (VALID_TABS as readonly string[]).includes(tab)) {
       setCurrentTab(tab);
     } else {
       // Fallback to location state if no query param
@@ -1183,7 +1197,7 @@ const Dashboard: React.FC<DashboardProps> = ({ children }) => {
                         fontWeight: 600,
                         background: (!authorized || !url)
                           ? '#e5e7eb'
-                          : 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                          : 'linear-gradient(135deg, #4f46e5 0%, #6366f1 60%, #06b6d4 100%)',
                         color: (!authorized || !url) ? '#9ca3af' : 'white',
                         border: 'none',
                         borderRadius: '8px',
@@ -1558,10 +1572,10 @@ const Dashboard: React.FC<DashboardProps> = ({ children }) => {
                         <p style={{ color: '#94a3b8' }}>forever</p>
                       </div>
                       <ul style={{ listStyle: 'none', padding: 0, marginBottom: '1.5rem' }}>
-                        <li style={{ padding: '0.5rem 0', color: '#64748b' }}>âœ“ Basic vulnerability scanning</li>
-                        <li style={{ padding: '0.5rem 0', color: '#64748b' }}>âœ“ 5 scans per month</li>
-                        <li style={{ padding: '0.5rem 0', color: '#64748b' }}>âœ“ Basic reports</li>
-                        <li style={{ padding: '0.5rem 0', color: '#64748b' }}>âœ“ Community support</li>
+                        <li style={{ padding: '0.5rem 0', color: '#64748b' }}>✓ Basic vulnerability scanning</li>
+                        <li style={{ padding: '0.5rem 0', color: '#64748b' }}>✓ 5 scans per month</li>
+                        <li style={{ padding: '0.5rem 0', color: '#64748b' }}>✓ Basic reports</li>
+                        <li style={{ padding: '0.5rem 0', color: '#64748b' }}>✓ Community support</li>
                       </ul>
                       <button
                         className="plan-btn"
@@ -1583,15 +1597,15 @@ const Dashboard: React.FC<DashboardProps> = ({ children }) => {
                         <p style={{ color: '#94a3b8' }}>per month</p>
                       </div>
                       <ul style={{ listStyle: 'none', padding: 0, marginBottom: '1.5rem' }}>
-                        <li style={{ padding: '0.5rem 0', color: '#64748b' }}>âœ“ Advanced vulnerability scanning</li>
-                        <li style={{ padding: '0.5rem 0', color: '#64748b' }}>âœ“ Unlimited scans</li>
-                        <li style={{ padding: '0.5rem 0', color: '#64748b' }}>âœ“ Detailed PDF reports</li>
-                        <li style={{ padding: '0.5rem 0', color: '#64748b' }}>âœ“ Priority support</li>
-                        <li style={{ padding: '0.5rem 0', color: '#64748b' }}>âœ“ AI-powered insights</li>
+                        <li style={{ padding: '0.5rem 0', color: '#64748b' }}>✓ Advanced vulnerability scanning</li>
+                        <li style={{ padding: '0.5rem 0', color: '#64748b' }}>✓ Unlimited scans</li>
+                        <li style={{ padding: '0.5rem 0', color: '#64748b' }}>✓ Detailed PDF reports</li>
+                        <li style={{ padding: '0.5rem 0', color: '#64748b' }}>✓ Priority support</li>
+                        <li style={{ padding: '0.5rem 0', color: '#64748b' }}>✓ AI-powered insights</li>
                       </ul>
                       <button
                         className="plan-btn"
-                        style={{ width: '100%', padding: '0.75rem', background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: 600 }}
+                        style={{ width: '100%', padding: '0.75rem', background: 'linear-gradient(135deg, #4f46e5 0%, #6366f1 60%, #06b6d4 100%)', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: 600 }}
                         onClick={() => {
                           setSelectedPlan({ id: 'professional', name: 'Professional Plan', price: 49, currency: 'USD', interval: 'month', features: ['Advanced vulnerability scanning', 'Unlimited scans', 'Detailed PDF reports', 'Priority support', 'AI-powered insights'] });
                           setShowPurchase(true);
@@ -1609,15 +1623,15 @@ const Dashboard: React.FC<DashboardProps> = ({ children }) => {
                         <p style={{ color: '#94a3b8' }}>per month</p>
                       </div>
                       <ul style={{ listStyle: 'none', padding: 0, marginBottom: '1.5rem' }}>
-                        <li style={{ padding: '0.5rem 0', color: '#64748b' }}>âœ“ Everything in Professional</li>
-                        <li style={{ padding: '0.5rem 0', color: '#64748b' }}>âœ“ Dedicated account manager</li>
-                        <li style={{ padding: '0.5rem 0', color: '#64748b' }}>âœ“ Custom integrations</li>
-                        <li style={{ padding: '0.5rem 0', color: '#64748b' }}>âœ“ SLA guarantees</li>
-                        <li style={{ padding: '0.5rem 0', color: '#64748b' }}>âœ“ Team collaboration</li>
+                        <li style={{ padding: '0.5rem 0', color: '#64748b' }}>✓ Everything in Professional</li>
+                        <li style={{ padding: '0.5rem 0', color: '#64748b' }}>✓ Dedicated account manager</li>
+                        <li style={{ padding: '0.5rem 0', color: '#64748b' }}>✓ Custom integrations</li>
+                        <li style={{ padding: '0.5rem 0', color: '#64748b' }}>✓ SLA guarantees</li>
+                        <li style={{ padding: '0.5rem 0', color: '#64748b' }}>✓ Team collaboration</li>
                       </ul>
                       <button
                         className="plan-btn"
-                        style={{ width: '100%', padding: '0.75rem', background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: 600 }}
+                        style={{ width: '100%', padding: '0.75rem', background: 'linear-gradient(135deg, #4f46e5 0%, #6366f1 60%, #06b6d4 100%)', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: 600 }}
                         onClick={() => {
                           setSelectedPlan({ id: 'enterprise', name: 'Enterprise Plan', price: 199, currency: 'USD', interval: 'month', features: ['Everything in Professional', 'Dedicated account manager', 'Custom integrations', 'SLA guarantees', 'Team collaboration'] });
                           setShowPurchase(true);
@@ -1632,11 +1646,11 @@ const Dashboard: React.FC<DashboardProps> = ({ children }) => {
                   {showPurchase && selectedPlan && (
                     <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(0,0,0,0.5)', zIndex: 999, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                       <div style={{ background: 'white', borderRadius: '20px', padding: '2rem', maxWidth: '500px', width: '90%', maxHeight: '85vh', overflowY: 'auto', position: 'relative' }}>
-                        <button onClick={() => { setShowPurchase(false); setSelectedPlan(null); }} style={{ position: 'absolute', top: '1rem', left: '1rem', background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', color: 'white', border: 'none', borderRadius: '10px', padding: '8px 16px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.9rem', fontWeight: 600 }}>
+                        <button onClick={() => { setShowPurchase(false); setSelectedPlan(null); }} style={{ position: 'absolute', top: '1rem', left: '1rem', background: 'linear-gradient(135deg, #4f46e5 0%, #6366f1 60%, #06b6d4 100%)', color: 'white', border: 'none', borderRadius: '10px', padding: '8px 16px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.9rem', fontWeight: 600 }}>
                           <i className="bi bi-arrow-left"></i> Back
                         </button>
                         <h2 style={{ textAlign: 'center', color: '#1e1b4b', marginTop: '2.5rem', marginBottom: '1rem' }}>Purchase {selectedPlan.name}</h2>
-                        <div style={{ background: 'linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%)', padding: '1rem', borderRadius: '12px', marginBottom: '1.5rem', textAlign: 'center' }}>
+                        <div style={{ background: 'linear-gradient(135deg, rgba(79, 70, 229, 0.08) 0%, rgba(6, 182, 212, 0.08) 100%)', padding: '1rem', borderRadius: '12px', marginBottom: '1.5rem', textAlign: 'center' }}>
                           <p style={{ fontSize: '2rem', fontWeight: 700, color: '#4f46e5', margin: 0 }}>${selectedPlan.price}/{selectedPlan.interval}</p>
                         </div>
 
@@ -1658,9 +1672,9 @@ const Dashboard: React.FC<DashboardProps> = ({ children }) => {
                               background: 'white'
                             }}
                           >
-                            <option value="card">ðŸ’³ Credit/Debit Card</option>
-                            <option value="paypal">ðŸ…¿ï¸ PayPal</option>
-                            <option value="bank">ðŸ¦ Bank Account</option>
+                            <option value="card">Credit/Debit Card</option>
+                            <option value="paypal">PayPal</option>
+                            <option value="bank">Bank Account</option>
                           </select>
                         </div>
 
@@ -1710,7 +1724,7 @@ const Dashboard: React.FC<DashboardProps> = ({ children }) => {
                             });
                             const data = await response.json();
                             if (response.ok) {
-                              setPopup({ isOpen: true, title: "Success! ðŸŽ‰", message: `Subscribed to ${selectedPlan.name}`, type: "success" });
+                              setPopup({ isOpen: true, title: "Success! 🎉", message: `Subscribed to ${selectedPlan.name}`, type: "success" });
                               setShowPurchase(false);
                               setSelectedPlan(null);
                               setPaymentDataExtended({ cardHolderName: '', cardNumber: '', expiryDate: '', cvv: '', paypalEmail: '', accountHolderName: '', accountNumber: '', bankName: '' });
@@ -1859,7 +1873,7 @@ const Dashboard: React.FC<DashboardProps> = ({ children }) => {
                             </>
                           )}
 
-                          <button type="submit" style={{ width: '100%', padding: '1rem', background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', color: 'white', border: 'none', borderRadius: '10px', fontSize: '1.1rem', fontWeight: 600, cursor: 'pointer' }}>Pay ${selectedPlan.price}</button>
+                          <button type="submit" style={{ width: '100%', padding: '1rem', background: 'linear-gradient(135deg, #4f46e5 0%, #6366f1 60%, #06b6d4 100%)', color: 'white', border: 'none', borderRadius: '10px', fontSize: '1.1rem', fontWeight: 600, cursor: 'pointer' }}>Pay ${selectedPlan.price}</button>
                         </form>
                       </div>
                     </div>
@@ -1935,7 +1949,7 @@ const Dashboard: React.FC<DashboardProps> = ({ children }) => {
                                 setTwoFactorEnabled(data.twoFactorEnabled);
                                 setPopup({
                                   isOpen: true,
-                                  title: newValue ? "2FA Enabled! ðŸ”’" : "2FA Disabled",
+                                  title: newValue ? "2FA Enabled! 🔒" : "2FA Disabled",
                                   message: newValue
                                     ? "Two-Factor Authentication has been enabled. You'll need to verify with OTP on your next signin."
                                     : "Two-Factor Authentication has been disabled.",
@@ -2135,9 +2149,9 @@ const Dashboard: React.FC<DashboardProps> = ({ children }) => {
                           background: 'white'
                         }}
                       >
-                        <option value="card">ðŸ’³ Credit/Debit Card</option>
-                        <option value="paypal">ðŸ…¿ï¸ PayPal</option>
-                        <option value="bank">ðŸ¦ Bank Account</option>
+                        <option value="card">Credit/Debit Card</option>
+                        <option value="paypal">PayPal</option>
+                        <option value="bank">Bank Account</option>
                       </select>
                     </div>
 
@@ -2429,7 +2443,7 @@ const Dashboard: React.FC<DashboardProps> = ({ children }) => {
                     <button
                       onClick={() => openChat()}
                       style={{
-                        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                        background: 'linear-gradient(135deg, #4f46e5 0%, #6366f1 60%, #06b6d4 100%)',
                         color: 'white',
                         padding: '0.75rem 1.5rem',
                         fontSize: '1rem',
@@ -2629,7 +2643,7 @@ const Dashboard: React.FC<DashboardProps> = ({ children }) => {
                           style={{
                             padding: '1.25rem',
                             border: '2px solid',
-                            borderColor: notification.read ? '#f1f5f9' : '#e9d5ff',
+                            borderColor: notification.read ? '#f1f5f9' : 'rgba(79, 70, 229, 0.35)',
                             borderRadius: '12px',
                             cursor: 'pointer',
                             background: notification.read ? 'white' : 'rgba(79, 70, 229, 0.02)',
