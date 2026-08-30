@@ -1,0 +1,473 @@
+/* Admin Signin - Premium Split Layout */
+
+.admin-signin-outer {
+    min-height: 100vh;
+    background: #f8fafc;
+    font-family: 'Inter', system-ui, sans-serif;
+}
+
+.admin-split-layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* ============================================================
+   BRAND SECTION (LEFT)
+   ============================================================ */
+.admin-brand-section {
+    flex: 1.2;
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.85) 0%, rgba(30, 27, 75, 0.75) 100%),
+                url('https://images.unsplash.com/photo-1558494949-ef010cbdcc51?auto=format&fit=crop&q=80&w=2021');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 4rem;
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.admin-brand-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 20% 30%, rgba(6, 182, 212, 0.15) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.brand-logo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+.brand-logo i {
+    font-size: 2rem;
+    color: #06b6d4;
+}
+
+.brand-hero-text {
+    max-width: 500px;
+}
+
+.brand-hero-text h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+}
+
+.brand-hero-text h1 span {
+    background: linear-gradient(135deg, #06b6d4, #3b82f6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.brand-hero-text p {
+    font-size: 1.1rem;
+    color: #94a3b8;
+    line-height: 1.6;
+}
+
+.brand-features {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.feature-item {
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+}
+
+.feature-item i {
+    font-size: 1.5rem;
+    color: #06b6d4;
+    background: rgba(6, 182, 212, 0.1);
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+}
+
+.feature-item h5 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0 0 0.25rem 0;
+}
+
+.feature-item p {
+    font-size: 0.9rem;
+    color: #94a3b8;
+    margin: 0;
+}
+
+.brand-footer {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+/* ============================================================
+   FORM SECTION (RIGHT)
+   ============================================================ */
+.admin-form-section {
+    flex: 1;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem;
+}
+
+.admin-signin-card {
+    width: 100%;
+    max-width: 440px;
+    animation: fadeInRight 0.6s ease-out;
+}
+
+@keyframes fadeInRight {
+    from { opacity: 0; transform: translateX(20px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+.admin-signin-header {
+    margin-bottom: 2.5rem;
+}
+
+.admin-signin-header h2 {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 0.5rem;
+}
+
+.admin-signin-header p {
+    color: #64748b;
+    font-size: 0.95rem;
+}
+
+.admin-signin-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-group-premium {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-group-premium label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #475569;
+}
+
+.label-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.forgot-link {
+    font-size: 0.85rem;
+    color: #06b6d4;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-wrapper i:first-child {
+    position: absolute;
+    left: 1rem;
+    color: #94a3b8;
+    font-size: 1.1rem;
+}
+
+.input-wrapper input {
+    width: 100%;
+    padding: 0.875rem 1rem 0.875rem 2.75rem;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 12px;
+    font-size: 1rem;
+    transition: all 0.2s;
+    color: #0f172a;
+}
+
+.input-wrapper input:focus {
+    border-color: #06b6d4;
+    box-shadow: 0 0 0 4px rgba(6, 182, 212, 0.05);
+    outline: none;
+}
+
+.toggle-pass {
+    position: absolute;
+    right: 1rem;
+    color: #94a3b8;
+    cursor: pointer;
+}
+
+.keep-signed-in {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.keep-signed-in input {
+    width: 18px;
+    height: 18px;
+    accent-color: #06b6d4;
+}
+
+.keep-signed-in label {
+    font-size: 0.9rem;
+    color: #64748b;
+    cursor: pointer;
+}
+
+.admin-signin-btn-premium {
+    padding: 1rem;
+    background: #00738d;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.admin-signin-btn-premium:hover {
+    background: #005a6e;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 115, 141, 0.2);
+}
+
+.mobile-logo-header {
+    display: none;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 2rem;
+}
+
+.mobile-logo-header i {
+    font-size: 1.75rem;
+    color: #06b6d4;
+}
+
+/* Show only on mobile/tablet */
+@media (max-width: 1024px) {
+    .mobile-logo-header {
+        display: flex;
+    }
+}
+
+.sso-divider {
+    position: relative;
+    text-align: center;
+    margin: 1rem 0;
+}
+
+.sso-divider::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: #f1f5f9;
+    z-index: 1;
+}
+
+.sso-divider span {
+    position: relative;
+    background: white;
+    padding: 0 1rem;
+    color: #94a3b8;
+    font-size: 0.85rem;
+    z-index: 2;
+}
+
+.sso-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.sso-btn {
+    padding: 0.75rem;
+    background: white;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #475569;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.sso-btn:hover {
+    background: #f8fafc;
+    border-color: #cbd5e1;
+}
+
+.request-account {
+    text-align: center;
+    margin-top: 2rem;
+    font-size: 0.9rem;
+    color: #64748b;
+}
+
+.request-account span {
+    color: #06b6d4;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+/* OTP SPECIFIC */
+.otp-input-premium {
+    text-align: center;
+    font-size: 2rem !important;
+    letter-spacing: 0.5rem;
+    font-weight: 800;
+    color: #06b6d4 !important;
+}
+
+.resend-btn-premium {
+    background: transparent;
+    border: none;
+    color: #64748b;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.resend-btn-premium:hover {
+    color: #06b6d4;
+}
+
+/* ============================================================
+   RESPONSIVE OVERRIDES (MOBILE, TABLET, DESKTOP)
+   ============================================================ */
+
+/* Extra Large Screens */
+@media (min-width: 1600px) {
+    .brand-hero-text h1 { font-size: 4.5rem; }
+    .admin-signin-card { max-width: 500px; }
+}
+
+/* Tablets & Small Laptops */
+@media (max-width: 1200px) {
+    .admin-brand-section { padding: 3rem; }
+    .brand-hero-text h1 { font-size: 2.8rem; }
+}
+
+/* Tablet Portrait (Hide Brand Side) */
+@media (max-width: 1024px) {
+    .admin-brand-section {
+        display: none;
+    }
+    
+    .admin-form-section {
+        flex: 1;
+        background: radial-gradient(circle at top right, #f8fafc, #e2e8f0);
+        padding: 2rem;
+    }
+
+    .admin-signin-card {
+        background: white;
+        padding: 3rem;
+        border-radius: 24px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+    }
+}
+
+/* Large Mobile / Small Tablets */
+@media (max-width: 768px) {
+    .admin-signin-header h2 { font-size: 1.75rem; }
+    .admin-signin-card { padding: 2.5rem 2rem; }
+    
+    .otp-input-premium {
+        font-size: 1.5rem !important;
+        letter-spacing: 0.3rem;
+    }
+}
+
+/* Mobile Phones (iPhone/Android) */
+@media (max-width: 480px) {
+    .admin-form-section {
+        padding: 1rem;
+    }
+
+    .admin-signin-card {
+        padding: 2rem 1.5rem;
+        border-radius: 16px;
+        box-shadow: none; /* Clean look on mobile */
+    }
+
+    .admin-signin-header h2 {
+        font-size: 1.5rem;
+    }
+
+    .admin-signin-header p {
+        font-size: 0.85rem;
+    }
+
+    .input-wrapper input {
+        padding: 0.75rem 0.75rem 0.75rem 2.5rem;
+        font-size: 0.95rem;
+    }
+
+    .admin-signin-btn-premium {
+        padding: 0.875rem;
+        font-size: 0.95rem;
+    }
+
+    .otp-input-premium {
+        font-size: 1.25rem !important;
+        letter-spacing: 0.2rem;
+    }
+
+    .brand-logo {
+        position: absolute;
+        top: 2rem;
+        left: 2rem;
+        color: #0f172a;
+    }
+}
+
+/* Height Fix for small screens */
+@media (max-height: 700px) {
+    .admin-signin-header { margin-bottom: 1.5rem; }
+    .brand-features { gap: 1rem; }
+}

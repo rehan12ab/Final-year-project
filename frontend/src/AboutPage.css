@@ -1,0 +1,220 @@
+/* ========================================
+   Modern About Page - HackSentinel Light Theme
+   ======================================== */
+
+.about-page {
+    font-family: var(--font-family);
+    background: #ffffff;
+    color: var(--text-primary);
+    overflow-x: hidden;
+}
+
+/* --- About Hero --- */
+.about-hero {
+    padding: 4rem 0 5rem;
+    background: linear-gradient(180deg, #f8fafc 0%, #eef2ff 50%, #ffffff 100%);
+    text-align: center;
+    position: relative;
+}
+
+.about-hero-content {
+    max-width: 760px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* --- Story Section --- */
+.about-story {
+    padding: 6rem 0;
+    background: #ffffff;
+}
+
+.story-container {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.section-description {
+    font-size: 1.05rem;
+    color: #475569;
+    line-height: 1.75;
+    margin-bottom: 1.25rem;
+}
+
+.story-list {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+}
+
+.story-list li {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #1e293b;
+}
+
+.story-icon {
+    color: #4f46e5;
+    flex-shrink: 0;
+}
+
+.story-visual-card {
+    padding: 4rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    background: linear-gradient(135deg, #ffffff 0%, #eef2ff 100%);
+    position: relative;
+    box-shadow: 0 20px 50px -10px rgba(79, 70, 229, 0.15);
+}
+
+.visual-shield-halo {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    background: rgba(79, 70, 229, 0.1);
+    border: 2px solid rgba(79, 70, 229, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #4f46e5;
+    box-shadow: 0 0 35px rgba(79, 70, 229, 0.25);
+    animation: floatSlow 4s ease-in-out infinite;
+}
+
+.story-badge-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1.2rem;
+    background: white;
+    border: 1px solid rgba(79, 70, 229, 0.2);
+    border-radius: var(--radius-full);
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: #0f172a;
+    box-shadow: 0 4px 15px rgba(15, 23, 42, 0.08);
+}
+
+.pulse-dot {
+    width: 8px;
+    height: 8px;
+    background: #10b981;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #10b981;
+}
+
+/* --- Timeline Section --- */
+.about-timeline {
+    padding: 6rem 0;
+    background: #f8fafc;
+}
+
+.timeline-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 3.5rem;
+}
+
+.timeline-card {
+    padding: 2.25rem;
+    position: relative;
+}
+
+.timeline-year-badge {
+    display: inline-block;
+    padding: 0.35rem 0.9rem;
+    background: linear-gradient(135deg, #4f46e5 0%, #06b6d4 100%);
+    color: white;
+    font-weight: 800;
+    font-size: 0.85rem;
+    border-radius: var(--radius-full);
+    margin-bottom: 1.25rem;
+}
+
+.timeline-card h4 {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 0.5rem;
+}
+
+.timeline-card p {
+    color: #64748b;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* --- Values Section --- */
+.about-values {
+    padding: 6rem 0;
+    background: #ffffff;
+}
+
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 3.5rem;
+}
+
+.value-card {
+    padding: 2.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.value-icon-halo {
+    width: 52px;
+    height: 52px;
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.value-icon-halo.indigo { background: #eef2ff; color: #4f46e5; }
+.value-icon-halo.cyan { background: #ecfeff; color: #06b6d4; }
+.value-icon-halo.violet { background: #f5f3ff; color: #8b5cf6; }
+
+.value-card h4 {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin: 0;
+}
+
+.value-card p {
+    color: #64748b;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* --- Responsive --- */
+@media screen and (max-width: 1024px) {
+    .story-container {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+
+    .timeline-grid,
+    .values-grid {
+        grid-template-columns: 1fr;
+    }
+}

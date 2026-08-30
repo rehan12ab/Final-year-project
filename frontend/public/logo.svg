@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#1e1b4b" />
+    </linearGradient>
+
+    <!-- Outer Shield Gradient -->
+    <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4f46e5" />
+      <stop offset="50%" stop-color="#6366f1" />
+      <stop offset="100%" stop-color="#06b6d4" />
+    </linearGradient>
+
+    <!-- Inner Core Gradient -->
+    <linearGradient id="coreGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#06b6d4" />
+      <stop offset="50%" stop-color="#38bdf8" />
+      <stop offset="100%" stop-color="#818cf8" />
+    </linearGradient>
+
+    <!-- Glowing Accent -->
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#22d3ee" />
+      <stop offset="100%" stop-color="#4f46e5" />
+    </linearGradient>
+
+    <!-- Glow Filter -->
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#4f46e5" flood-opacity="0.4" />
+    </filter>
+  </defs>
+
+  <!-- Base Rounded Container / Background (optional for standalone icon) -->
+  <rect width="512" height="512" rx="112" fill="url(#bgGrad)" />
+
+  <!-- Outer Cyber Circuit Ring Halo -->
+  <circle cx="256" cy="256" r="180" fill="none" stroke="url(#accentGrad)" stroke-width="3" stroke-dasharray="8 12" opacity="0.35" />
+  
+  <!-- Outer Shield Shell -->
+  <path d="M256 70 L390 125 C390 260 330 365 256 430 C182 365 122 260 122 125 Z" 
+        fill="url(#shieldGrad)" 
+        filter="url(#shadow)" />
+
+  <!-- Inner Dark Shield Recess -->
+  <path d="M256 100 L365 145 C365 252 316 338 256 392 C196 338 147 252 147 145 Z" 
+        fill="#0f172a" />
+
+  <!-- Circuit Trace Lines Left -->
+  <path d="M190 190 L220 220 L220 280 L190 310" fill="none" stroke="#06b6d4" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" opacity="0.8" />
+  <circle cx="190" cy="190" r="5" fill="#22d3ee" />
+  <circle cx="190" cy="310" r="5" fill="#22d3ee" />
+
+  <!-- Circuit Trace Lines Right -->
+  <path d="M322 190 L292 220 L292 280 L322 310" fill="none" stroke="#6366f1" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" opacity="0.8" />
+  <circle cx="322" cy="190" r="5" fill="#818cf8" />
+  <circle cx="322" cy="310" r="5" fill="#818cf8" />
+
+  <!-- Neural Core Polygon (Diamond / Hexagon Hybrid) -->
+  <polygon points="256,155 315,225 315,295 256,355 197,295 197,225" 
+           fill="url(#coreGrad)" 
+           filter="url(#glow)" />
+
+  <!-- Central Sentinel Eye / Cyber Core -->
+  <circle cx="256" cy="256" r="32" fill="#0f172a" />
+  <circle cx="256" cy="256" r="20" fill="#22d3ee" filter="url(#glow)" />
+  <circle cx="256" cy="256" r="8" fill="#ffffff" />
+
+  <!-- Dynamic Scan Beam Wave -->
+  <path d="M220 256 L292 256" stroke="#ffffff" stroke-width="3" stroke-linecap="round" filter="url(#glow)" opacity="0.9" />
+  
+  <!-- Subtle Top Highlights -->
+  <path d="M256 105 L360 148" stroke="#ffffff" stroke-width="3" stroke-linecap="round" opacity="0.4" />
+</svg>

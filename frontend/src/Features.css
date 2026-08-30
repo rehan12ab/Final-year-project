@@ -1,0 +1,236 @@
+/* ========================================
+   Modern Features Page - HackSentinel Light Theme
+   ======================================== */
+
+.features-page {
+    font-family: var(--font-family);
+    background: #ffffff;
+    color: var(--text-primary);
+    overflow-x: hidden;
+}
+
+/* --- Hero --- */
+.features-hero {
+    padding: 4rem 0 4.5rem;
+    background: linear-gradient(180deg, #f8fafc 0%, #eef2ff 50%, #ffffff 100%);
+    text-align: center;
+}
+
+.features-hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* --- Category Filter Tabs --- */
+.feature-category-tabs {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-top: 2rem;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 0.4rem;
+    border-radius: var(--radius-full);
+    border: 1px solid var(--border-default);
+    box-shadow: 0 4px 15px rgba(15, 23, 42, 0.05);
+}
+
+.category-tab {
+    padding: 0.55rem 1.25rem;
+    border-radius: var(--radius-full);
+    border: none;
+    background: transparent;
+    color: #64748b;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.category-tab:hover {
+    color: var(--primary);
+}
+
+.category-tab.active {
+    background: var(--primary);
+    color: white;
+    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.35);
+}
+
+/* --- Features Grid --- */
+.features-grid-section {
+    padding: 3rem 0 6rem;
+    background: #ffffff;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.feature-card {
+    padding: 2.25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.feature-card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.feature-icon-halo {
+    width: 52px;
+    height: 52px;
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.feature-icon-halo.indigo { background: #eef2ff; color: #4f46e5; }
+.feature-icon-halo.cyan { background: #ecfeff; color: #06b6d4; }
+.feature-icon-halo.violet { background: #f5f3ff; color: #8b5cf6; }
+.feature-icon-halo.amber { background: #fef3c7; color: #d97706; }
+.feature-icon-halo.blue { background: #eff6ff; color: #3b82f6; }
+.feature-icon-halo.emerald { background: #ecfdf5; color: #10b981; }
+.feature-icon-halo.rose { background: #fff1f2; color: #f43f5e; }
+
+.feature-stat-pill {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: var(--radius-md);
+    padding: 0.35rem 0.65rem;
+    text-align: right;
+}
+
+.feature-stat-pill .stat-val {
+    display: block;
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: var(--primary);
+    line-height: 1.2;
+}
+
+.feature-stat-pill .stat-lbl {
+    display: block;
+    font-size: 0.68rem;
+    color: #64748b;
+    font-weight: 600;
+}
+
+.feature-title {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 0.75rem;
+    line-height: 1.35;
+}
+
+.feature-description {
+    color: #64748b;
+    font-size: 0.92rem;
+    line-height: 1.65;
+    margin-bottom: 1.5rem;
+}
+
+.feature-benefits-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    border-top: 1px solid #f1f5f9;
+    padding-top: 1.25rem;
+    margin-top: auto;
+}
+
+.benefit-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #334155;
+}
+
+.benefit-icon {
+    color: #10b981;
+    flex-shrink: 0;
+}
+
+/* --- Why Choose Section --- */
+.why-choose-section {
+    padding: 6rem 0;
+    background: #f8fafc;
+}
+
+.why-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.75rem;
+    margin-top: 3.5rem;
+}
+
+.why-card {
+    padding: 2.25rem 1.75rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.why-num-badge {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--primary);
+    opacity: 0.85;
+    font-family: var(--font-mono);
+}
+
+.why-card h3 {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin: 0;
+}
+
+.why-card p {
+    color: #64748b;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* --- Responsive --- */
+@media screen and (max-width: 1024px) {
+    .features-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .why-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .feature-category-tabs {
+        border-radius: var(--radius-lg);
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .why-grid {
+        grid-template-columns: 1fr;
+    }
+}
