@@ -1,0 +1,35 @@
+# HackSentinel Python Prediction API — production dependencies
+
+# Web framework
+fastapi==0.128.7
+uvicorn[standard]==0.40.0
+
+# ML models
+xgboost==3.2.0
+lightgbm==4.6.0
+scikit-learn>=1.5.0
+numpy>=1.26,<3.0
+scipy>=1.11
+joblib>=1.3
+
+# Feature engineering
+pandas>=2.0.0
+
+# RAG / embeddings
+sentence-transformers>=3.0.0
+chromadb>=0.5.0
+
+# HTTP + scanning
+httpx>=0.27.0
+beautifulsoup4>=4.12.0
+lxml>=4.9.0
+cloudscraper>=1.2.71
+tldextract>=5.1.0
+
+# Utilities
+python-dotenv>=1.0.0
+colorama>=0.4.6
+pydantic>=2.6.0
+
+# Model download from cloud storage on boot
+requests>=2.31.0

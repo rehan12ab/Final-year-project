@@ -1,0 +1,42 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+.Python
+venv/
+.venv/
+.venv-train/
+env/
+
+# ML models & data — downloaded at runtime, never committed
+models/
+vector_db/
+vector_db_v2/
+merged_data/
+preprocessed_data/
+downloaded_data/
+*.pkl
+*.joblib
+*.bin
+*.pt
+*.h5
+
+# HuggingFace cache
+.cache/
+hf_cache/
+
+# Logs
+*.log
+logs/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Env files (secrets)
+.env
+.env.local

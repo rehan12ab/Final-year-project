@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+.git/
+.gitignore
+README.md
+models/
+vector_db/
+vector_db_v2/
+merged_data/
+.env
+*.log
